@@ -2,8 +2,11 @@
 
 ### [Ready, set, go!](http://learnyouahaskell.com/starting-out#ready-set-go)
 * Open up a terminal and type in **ghci**!
-* For brevity, do :set prompt "ghci> "
-* Try some simple arithmetic. P.S. put parens around negative numbers
+* For brevity... 
+```
+:set prompt "ghci> "
+```
+* Try some simple arithmetic. P.S. put parens around negative numbers!
 * Boolean stuff too! **&&** , **||**, and **not**
 * Test for equality with **==**
 * Try something like **5 + "llama"** --> type error!
@@ -128,7 +131,7 @@ ghci> [9.4, 11, 10, 8, 22.9] !! 0
     []
     ```
     * ^if we try to take more elements than there are in the list, it returns the list. if we try to take 0 elements, we get an empty list.
-    * drop - similar to take, but it drops the number of elements from the beginning of the list
+    * **drop** - similar to take, but it drops the number of elements from the beginning of the list
     ```
     ghci> drop 3 [8,4,2,1,5,6]
     [1,5,6]
