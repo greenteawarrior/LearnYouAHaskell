@@ -15,9 +15,9 @@ Here are my notes for the Introduction section of the tutorial. Not sure how I f
 ### Setting up!
 * already have a text editor - sublime all the things!
 * "download the [Haskell Platform](https://www.haskell.org/platform/linux.html), which is basically Haskell with batteries included"
-'''
-sudo apt-get install haskell-platform
-'''
+```
+$ sudo apt-get install haskell-platform
+```
 * interactive mode for GHC (Glasgow Haskell Compiler):
     * use the command **ghci**
     * load up your functions from a file called myfunctions.hs with **:l myfunctions** or **:r** (reload)
