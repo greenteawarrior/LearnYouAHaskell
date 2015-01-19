@@ -195,3 +195,73 @@ ghci> [20, 19..1]
     [10,10,10]
     ```
 
+### [I'm a list comprehension](http://learnyouahaskell.com/starting-out#im-a-list-comprehension)
+* Let's get the first ten even numbers
+```
+ghci> [x*2 | x <- [1..10]]
+
+```
+* Now let's add a condition (aka predicate) to the comprehension. Predicates go after the binding parts and are then separated by a comma. The predicate in the example below is x*2 >= 12. Let's get only elements that, when doubled, are greater than or equal to 12...
+```
+ghci> [x*2 | x <- [1..10], x*2 >= 12]
+
+```
+* Another example - get all numbers from 50 to 100 whose remainder when divided with the number 7 is 3? 
+```
+ghci> [x | x <- [50..100], x `mod` 7 ==3]
+[52,59,66,73,80,87,94]
+```
+* Aww yeah! This strategy of combing through lists in a certain way is called **filtering**. We took a list of numbers and filted them by the predicate.
+* Describe what this one does:
+```
+boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x] 
+```
+* ^ btw: the function **odd* returned **True** on an odd number and **False** on an even number. The element is included in the list only if all the predicates evaluate to **True**.
+* We can also have more than one predicate:
+```
+ghci> [x | x <- [10, 20], x /= 13, x =/ 15, x =/19]
+[10,11,12,14,16,17,18, 20]
+```
+* We can also draw from several lists. When this happens, comprehensions produce all combinations of the given lists and then goins them by the supplied output function. 
+* Get the products of all the possible combinations between the two lists **[2,5,10]** and **[8,10,11]**
+```
+ghci> [ x*y | x <- [2,5,10], y <- [8,10,11]]
+[16,20,22,40,50,55,80,100,110]  
+```
+* Slight modification: getting all the products > 50
+```
+ghci> [ x*y | x <- [2,5,10], y <- [8,10,11], x*y > 50]
+[55,80,100,110]
+```
+* epic hilarity with combining adjectives and nouns xD
+```
+ghci> let nouns = ["hobo","frog","pope"]
+ghci> let adjectives = ["lazy","grouchy","scheming"]
+ghci> [adjective ++ " " ++ noun | adjective <- adjectives, noun <- nouns]
+["lazy hobo","lazy frog","lazy pope","grouchy hobo","grouchy frog","grouchy pope","scheming hobo","scheming frog","scheming pope"]
+```
+* Making our own version of **length**
+```
+length' xs = sum [1 | _ <- xs]
+```
+* ^ _ (underscore) means that we don't care what we'll draw from the list so instead of writing a variable name we'll never use, we'll use an underscore
+* Strings are lists, so we can use comprehensions to process/producue strings!
+* Example:
+```
+removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
+```
+* try it out:
+```
+ghci> removeNonUppercase "Hahaha! Aha!""
+"HA"
+ghci> removeNonUppercase "IdontLIKEFROGS"
+"ILIKEFROGS"
+```
+* You can also do nested list comprehensions when operating on nested lists!!
+* ex. Remove all odd numbers without flattening the list of lists
+```
+ghci> let xxs = [[1,2,3],[4,5,6],[7,8,9]]
+ghci> [ [x | x <- xs, even x] | xs <- xxs ]
+[[2],[4,6],[8]]
+```
+* You can write list comprehensions across several lines. If you're not ghci it's better to split longer list comprehensions across multiple lines, especially if they're nested. hashtag:formattingthing
