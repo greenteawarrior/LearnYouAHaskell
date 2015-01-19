@@ -92,7 +92,7 @@ ghci> 5:[1,2,3,4,5]
 * **:** (colon) takes a number and a list of numbers OR a character and a list of characters. on the other hand, **++** takes two lists. even if you're just adding one thing to the end of a list with **++**, you have to surround it with [ ] so it becomes a list.
 * **[1,2,3]** is syntactic sugar for **1:2:3:[ ]** 
 * note: [ ], [ [ ] ], and [ [ ], [ ], [ ] ] are all different.
-    * [ ] is an empty list
+    * a pair of square brackets [ ] is an empty list
     * [ [ ] ] is a list that contains one empty list
     * [ [ ], [ ], [ ] ] is a list that contains three empty lists
 * use **!!** to get an element out of a list by index. 
@@ -152,3 +152,46 @@ ghci> [9.4, 11, 10, 8, 22.9] !! 0
     False
     ```
 * we'll work more with list functions soon :D
+
+### [Texas ranges](http://learnyouahaskell.com/starting-out#texas-ranges)
+* ranges are ways of making lists that are arithmetic sequences of elements that can be enumerated
+* works for numbers and characters
+* examples: 
+    * [1..20] is equivalent to writing out all the numbers from 1 to 20 in a list
+    * ['a'..'z']
+    * ['K'..'Z']
+* you can also specify a step! just separate the first two elements with a comma and then specify what the upper limit is.
+```
+ghci> [2,4..20]
+[2,4,5,6,8,10,12,14,16,18,20]
+ghci> [3,6..20]
+[3,6,9,12,15,18]
+```
+* note 1: power series won't work with ranges
+* note 2: you still have to specify the first two elements of a decreasing series
+```
+ghci> [20, 19..1]
+[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
+```
+* note 3: floating point numbers in ranges can get pretty funky... beware!
+* woah! you can use ranges to make infinite lists by not specifying an upper limit?! what does that even mean?! #excited
+* excerpt: "For now, let's examine how you would get the first 24 multiples of 13. Sure, you could do **[13,26..24*13]**. But there's a better way: **take 24 [13,26..]**. Because Haskell is lazy, it won't try to evaluate the infinite list immediately because it would never finish. It'll wait to see what you want to get out of that infinite lists. And here it sees you just want the first 24 elements and it gladly obliges."
+* functions that produce infinite lists:
+    * **cycle** takes a list a cycles it into an infinite list. if you just display the result, it will go on forever so you have to slice it off somewhere (via **take** or something else).
+    ```
+    ghci> take 10 (cycle[1,2,3])
+    [1,2,3,1,2,3,1,2,3,1]
+    ghci> take 12 (cycle "LOL ")
+    "LOL LOL LOL "
+    ```
+    * **repeat** takes an element and produces an infinite list of just that element. it's like cycling a list with only one element.
+    ```
+    ghci> take 10 (repeat 5)
+    [5,5,5,5,5,5,5,5,5,5] 
+    ```
+    * ^ however it might be simpler to just use the **replicate** function if you want some number of the same element in a list. 
+    ```
+    ghci> replicate 3 10 
+    [10,10,10]
+    ```
+
