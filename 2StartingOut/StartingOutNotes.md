@@ -216,7 +216,7 @@ ghci> [x | x <- [50..100], x `mod` 7 ==3]
 ```
 boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x] 
 ```
-* ^ btw: the function **odd* returned **True** on an odd number and **False** on an even number. The element is included in the list only if all the predicates evaluate to **True**.
+* ^ btw: the function **odd** returned **True** on an odd number and **False** on an even number. The element is included in the list only if all the predicates evaluate to **True**.
 * We can also have more than one predicate:
 ```
 ghci> [x | x <- [10, 20], x /= 13, x =/ 15, x =/19]
@@ -289,7 +289,7 @@ ghci> zip [1 .. 5] [5,5,5,5,5]
 ghci> zip [1 .. 5] ["one", "two", "three", "four", "five"]
 [(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]
 ``` 
-    * ^ when you give **zip** lists of different sizes, it'll stop at the length of the shorter list. Haskell's lazy so we can zip finite lists with infinite lists :D... (cool!)
+    * ^when you give **zip** lists of different sizes, it'll stop at the length of the shorter list. Haskell's lazy so we can zip finite lists with infinite lists :D... (cool!)
 ```
 ghci> zip [1..] ["apple", "orange", "cherry", "mango"]
 [(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
@@ -297,17 +297,17 @@ ghci> zip [1..] ["apple", "orange", "cherry", "mango"]
 * a problem that combines tuples and list comprehensions! which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24?
 * note: these lines below are works in progres. the third and final line is the entire solution. ^^
     * generate all triangles with sides equal to or smaller than 10.
-```
-ghci> let triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10] ]
-```
-    * another condition - they must be right triangles. deets: b isn't larger than the hypotenuse and side a isn't larger than side b. 
-```
-ghci> let rightTriangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
-```
+   ```
+   ghci> let triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10] ]
+   ```
+   * another condition - they must be right triangles. deets: b isn't larger than the hypotenuse and side a isn't larger than side b.
+   ```
+   ghci> let rightTriangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2]
+   ```
     * another condition - perimeter 24. this should solve it in one line :) aww yeah!!
-```
-let rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24 ]
-ghci> rightTriangles'
-[(6,8,10)] 
-``` 
-* **common pattern/strategy in functional programming: take a starting set of solutions and then apply transformations to those solutions and filter them until you get the right ones*
+   ```
+   let rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24 ]
+   ghci> rightTriangles'
+   [(6,8,10)] 
+   ``` 
+* **common pattern/strategy in functional programming: take a starting set of solutions and then apply transformations to those solutions and filter them until you get the right ones**
