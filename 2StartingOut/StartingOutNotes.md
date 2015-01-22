@@ -48,9 +48,9 @@
 * see baby.hs 
 * functionName parameter1 parameter2 parameterEtc = defineWhatThisFunctionDoes
 * because **+** works on integers or floating point numbers, the doubleMe function also works on any integer or floating point number
-* common strategy in Haskell: making basic functions that are obviously correct and then combining them into more complex functions - see **doubleUs'**
+* common strategy in Haskell: making basic functions that are obviously correct and then combining them into more complex functions - see **doubleUs'** 
 * functions in Haskell don't have to be in any particular order
-* if statements! see **doubleSmallNumber**
+* if statements! see **doubleSmallNumber** 
     * unlike other languages... in Haskell, the else part is mandatory since every expression and every function must return something!
     * an if statement is an _expression_ - a piece of code that returns a value
         * **5** is an expression b/c it returns 5
@@ -62,7 +62,7 @@
     ```
     conanO'Brien = "It's a-me, Conan O'Brien!"
     ```
-    * because we can't change what names and functions mean once we've defined them, conanO'Brien and the string "It's a-me, Conan O'Brien!" can be used interchangeably
+    * because we can't change what names and functions mean once we've defined them, conanO'Brien and the string "It's a-me, Conan O'Brien!" can be used interchangeably.
 
 ### [An intro to lists](http://learnyouahaskell.com/starting-out#an-intro-to-lists)
 * "Lists are SO awesome."
@@ -283,18 +283,18 @@ ghci> [ [x | x <- xs, even x] | xs <- xxs ]
     * **fst** returns the first component of a given pair. only works on pairs!
     * **snd** returns the second component of a given pair. only works on pairs!
     * **zip** takes two lists and zips them together into one list by joining th ematching elements into pairs. super useful for combining lists or traversing them simultaneously!!
-```
-ghci> zip [1 .. 5] [5,5,5,5,5]
-[(1,5),(2,5),(3,5),(4,5),(5,5)]
-ghci> zip [1 .. 5] ["one", "two", "three", "four", "five"]
-[(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]
-``` 
-    * ^when you give **zip** lists of different sizes, it'll stop at the length of the shorter list. Haskell's lazy so we can zip finite lists with infinite lists :D... (cool!)
-```
-ghci> zip [1..] ["apple", "orange", "cherry", "mango"]
-[(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
-```
-* a problem that combines tuples and list comprehensions! which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24?
+   ```
+   ghci> zip [1 .. 5] [5,5,5,5,5]
+   [(1,5),(2,5),(3,5),(4,5),(5,5)]
+   ghci> zip [1 .. 5] ["one", "two", "three", "four", "five"]
+   [(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]
+   ``` 
+    * when you give **zip** lists of different sizes, it'll stop at the length of the shorter list. Haskell's lazy so we can zip finite lists with infinite lists :D... (cool!)
+   ```
+   ghci> zip [1..] ["apple", "orange", "cherry", "mango"]
+   [(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
+   ```
+* **a problem that combines tuples and list comprehensions! which right triangle that has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24?**
 * note: these lines below are works in progres. the third and final line is the entire solution. ^^
     * generate all triangles with sides equal to or smaller than 10.
    ```
